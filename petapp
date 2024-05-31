@@ -1,0 +1,152 @@
+using System;
+
+namespace PetApp
+{
+    class Pet
+    {
+        public string Name { get; set; }
+        public int HungerLevel { get; set; }
+        public int HappinessLevel { get; set; }
+
+        public Pet(string name)
+        {
+            Name = name;
+            HungerLevel = 50;
+            HappinessLevel = 50;
+        }
+
+        public void Feed()
+        {
+            HungerLevel -= 20;
+            Console.WriteLine($"{Name} has been fed!");
+        }
+
+        public void Play()
+        {
+            HappinessLevel += 20;
+            Console.WriteLine($"{Name} has played!");
+        }
+
+        public void Rest()
+        {
+            HungerLevel += 10;
+            HappinessLevel += 10;
+            Console.WriteLine($"{Name} has rested!");
+        }
+
+        public void CheckStatus()
+        {
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Hunger Level: {HungerLevel}");
+            Console.WriteLine($"Happiness Level: {HappinessLevel}");
+
+            if (HungerLevel < 20)
+            {
+                Console.WriteLine("Warning: Your pet is hungry!");
+            }
+            else if (HungerLevel > 80)
+            {
+                Console.WriteLine("Warning: Your pet is overfed!");
+            }
+
+            if (HappinessLevel < 20)
+            {
+                Console.WriteLine("Warning: Your pet is unhappy!");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pet dog = new Pet("Dog 🐕");
+            Pet cat = new Pet("Cat 🐈");
+            Pet rabbit = new Pet("Rabbit 🐰");
+
+            while (true)
+            {
+                Console.WriteLine("Select a pet:");
+                Console.WriteLine("1. Dog 🐕");
+                Console.WriteLine("2. Cat 🐈");
+                Console.WriteLine("3. Rabbit 🐰");
+                Console.WriteLine("4. Exit");
+
+                int choice = int.Parse(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("You selected Dog 🐕!");
+                        dog.CheckStatus();
+                        Console.WriteLine("What do you want to do?");
+                        Console.WriteLine("1. Feed");
+                        Console.WriteLine("2. Play");
+                        Console.WriteLine("3. Rest");
+                        int action = int.Parse(Console.ReadLine());
+                        switch (action)
+                        {
+                            case 1:
+                                dog.Feed();
+                                break;
+                            case 2:
+                                dog.Play();
+                                break;
+                            case 3:
+                                dog.Rest();
+                                break;
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("You selected Cat 🐈!");
+                        cat.CheckStatus();
+                        Console.WriteLine("What do you want to do?");
+                        Console.WriteLine("1. Feed");
+                        Console.WriteLine("2. Play");
+                        Console.WriteLine("3. Rest");
+                        action = int.Parse(Console.ReadLine());
+                        switch (action)
+                        {
+                            case 1:
+                                cat.Feed();
+                                break;
+                            case 2:
+                                cat.Play();
+                                break;
+                            case 3:
+                                cat.Rest();
+                                break;
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("You selected Rabbit 🐰!");
+                        rabbit.CheckStatus();
+                        Console.WriteLine("What do you want to do?");
+                        Console.WriteLine("1. Feed");
+                        Console.WriteLine("2. Play");
+                        Console.WriteLine("3. Rest");
+                        action = int.Parse(Console.ReadLine());
+                        switch (action)
+                        {
+                            case 1:
+                                rabbit.Feed();
+                                break;
+                            case 2:
+                                rabbit.Play();
+                                break;
+                            case 3:
+                                rabbit.Rest();
+                                break;
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Goodbye!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Try again!");
+                        break;
+                }
+            }
+        }
+    }
+}
